@@ -1,21 +1,26 @@
-package com.ellion.taskboard.services
+package com.ellion.taskboard.service
 
-import com.ellion.taskboard.models.Task
-import com.ellion.taskboard.repositories.TaskRepository
+import com.ellion.taskboard.model.Task
+import com.ellion.taskboard.model.dto.TaskDto
+import com.ellion.taskboard.model.toDto
+import com.ellion.taskboard.repository.TaskRepository
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import java.util.*
 
 @Service
 class TaskService(private val repository: TaskRepository) {
-    fun findAll(): List<Task> = repository.findAll().toList()
-    fun findById(id: UUID): Task? = repository.findByIdOrNull(id)
+    fun findAll(): List<TaskDto> = repository.findAll().toDto()
+
+    fun findById(id: UUID): TaskDto? = repository.findByIdOrNull(id)?.toDto()
+
     fun delete(id: UUID): Unit {
         if (!repository.existsById(id)) { throw IllegalArgumentException("Entity with id $id not found") }
 
         repository.deleteById(id)
     }
-    fun update(id: UUID, title: String? = null, description: String? = null): Task {
+
+    fun update(id: UUID, title: String? = null, description: String? = null): TaskDto {
         val task = repository.findById(id)
                 .orElseThrow { IllegalArgumentException("Task with id $id not found") }
 
@@ -24,13 +29,13 @@ class TaskService(private val repository: TaskRepository) {
 
         repository.save(task)
 
-        return task;
+        return task.toDto();
     }
 
-    fun create(title: String, description: String): Task {
+    fun create(title: String, description: String): TaskDto {
         val task = Task(title, description, id = UUID.randomUUID())
         repository.save(task)
 
-        return task
+        return task.toDto()
     }
 }

@@ -1,7 +1,7 @@
-package com.ellion.taskboard.controllers
+package com.ellion.taskboard.controller
 
-import com.ellion.taskboard.services.TaskService
-import com.ellion.taskboard.models.dto.UserDto
+import com.ellion.taskboard.service.TaskService
+import com.ellion.taskboard.model.dto.UserDto
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.oauth2.jwt.Jwt
 import org.springframework.web.bind.annotation.GetMapping

@@ -1,3 +1,3 @@
-package com.ellion.taskboard.models.dto
+package com.ellion.taskboard.model.dto
 
 class UserDto (val id: String, val email: String)

@@ -1,4 +1,4 @@
-package com.ellion.taskboard.models.dto
+package com.ellion.taskboard.model.dto
 
 import jakarta.validation.constraints.NotEmpty
 import jakarta.validation.constraints.Size

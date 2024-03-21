@@ -1,7 +1,7 @@
 package com.ellion.taskboard.configuration
 
-import com.ellion.taskboard.repositories.TaskRepository
-import com.ellion.taskboard.models.Task
+import com.ellion.taskboard.repository.TaskRepository
+import com.ellion.taskboard.model.Task
 import org.springframework.boot.ApplicationRunner
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration

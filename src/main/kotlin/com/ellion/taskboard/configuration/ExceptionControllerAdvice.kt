@@ -1,6 +1,6 @@
 package com.ellion.taskboard.configuration
 
-import com.ellion.taskboard.exceptions.NotFoundException
+import com.ellion.taskboard.exception.NotFoundException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.http.converter.HttpMessageNotReadableException
