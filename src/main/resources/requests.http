@@ -1,0 +1,61 @@
+@username = testemail@gmail.com
+@password = password
+@apikey = AIzaSyCbrQX9G9t3w8QuYcCttV_ftya3Kv8RgII
+
+### Firebase login
+POST https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key={{apikey}}
+Content-Type: application/json
+
+{
+  "email": "{{username}}",
+  "password": "{{password}}",
+  "returnSecureToken": true
+}
+> {%
+    client.global.set("auth_token", response.body.idToken);
+%}
+
+### Create task
+POST http://localhost:8080/api/tasks
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+
+{
+  "title": "Task NEW",
+  "description": "Description"
+}
+> {%
+    client.global.set("task_id", response.body.id);
+%}
+
+### Get All tasks
+GET http://localhost:8080/api/tasks
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+
+### Get task By ID
+GET http://localhost:8080/api/tasks/{{task_id}}
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+
+### Update task by ID
+PATCH http://localhost:8080/api/tasks/{{task_id}}
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+
+{
+  "title": "Task NEW 2",
+  "description": "Description 2"
+}
+
+### Delete task By ID
+DELETE http://localhost:8080/api/tasks/{{task_id}}
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+
+### Get User info
+GET http://localhost:8080/api/user
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+
+
